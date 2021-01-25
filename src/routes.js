@@ -4,8 +4,15 @@ const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster')
 const Tables = React.lazy(() => import('./views/base/tables/Tables'));
 const Waiters = React.lazy(() => import('./views/waiters/Waiters'));
 const Roles = React.lazy(() => import('./views/roles/Roles'));
+const Customers = React.lazy(() => import('./views/customers/Customers'));
+const Products = React.lazy(() => import('./views/products/Products'));
 const Categories = React.lazy(() => import('./views/categories/Categories'));
 const Orders = React.lazy(() => import('./views/orders/Orders'));
+
+const pendingOrders = React.lazy(() => import('./views/pendingOrders/pendingOrders'));
+const servedOrders = React.lazy(() => import('./views/servedOrders/servedOrders'));
+const Deliveries = React.lazy(() => import('./views/Deliveries/Deliveries'));
+
 const Tabless = React.lazy(() => import('./views/tables/Tables'));
 
 
@@ -51,7 +58,12 @@ const routes = [
   { path: '/waiters', name: 'Waiters', component: Waiters },
   { path: '/categories', name: 'Categories', component: Categories },
   { path: '/orders', name: 'Orders', component: Orders },
+  { path: '/pendingOrders', name: 'Pending Orders', component: pendingOrders },
+  { path: '/servedOrders', name: 'Served Orders', component: servedOrders },
+  { path: '/Deliveries', name: 'Deliveries', component: Deliveries },
   { path: '/tables', name: 'Tables', component: Tabless },
+  { path: '/customers', name: 'Customers', component: Customers },
+  { path: '/products', name: 'Products', component: Products },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },

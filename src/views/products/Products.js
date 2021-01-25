@@ -8,6 +8,10 @@ import {
   CCol,
   CDataTable,
   CRow,
+  CDropdown,
+  CDropdownToggle,
+  CDropdownMenu,
+  CInputFile,
   CModal,
   CModalHeader,
   CModalTitle,
@@ -17,8 +21,8 @@ import {
   CFormGroup,
   CLabel,
   CInput,
-  CFormText,
-  CInputFile,
+  CTextarea,
+  CSwitch,
   CSelect
 } from '@coreui/react'
 
@@ -35,11 +39,11 @@ const getBadge = status => {
 }
 const fields = ['id', 'name', 'registered', 'role', 'status']
 
-const Waiters = () => {
+const Products = () => {
 
   // const [data, setData] = React.useState([]);
 
-  // fetch('http://localhost:8080/role/all')
+  // fetch('http://localhost:8080/product/all')
   //   .then(response => response.json())
   //   .then(data => {
   //     setData(data);
@@ -59,95 +63,99 @@ const Waiters = () => {
         size="lg"
       >
         <CModalHeader closeButton>
-          <CModalTitle>Ajouter un Utilisateur</CModalTitle>
+          <CModalTitle>Ajouter un produit</CModalTitle>
         </CModalHeader>
         <CModalBody>
           <CRow>
             <CCol xs="12" md="12">
               <CCard>
                 <CCardBody>
-                  <CForm action="http://localhost:8080/role/newRole/" method="post" className="form-horizontal">
+                  <CForm action="http://localhost:8080/product/newProduct/" method="post" className="form-horizontal">
                     <CFormGroup row>
                       <CCol md="3">
-                        <CLabel htmlFor="username">Utilisateur</CLabel>
+                        <CLabel htmlFor="produit">Produit</CLabel>
                       </CCol>
                       <CCol xs="12" md="9">
-                        <CInput id="username" name="username" placeholder="Entrer Username" />
-                      </CCol>
-                    </CFormGroup>
-                    <CFormGroup row>
-                      <CCol md="3">
-                        <CLabel htmlFor="last_name">Nom</CLabel>
-                      </CCol>
-                      <CCol xs="12" md="9">
-                        <CInput id="last_name" name="last_name" placeholder="Entrer Nom" />
-                        <CFormText className="help-block">Saisir le nom de l'utilisateur</CFormText>
+                        <CInput id="produit" name="produit" placeholder="Titre du produit" />
                       </CCol>
                     </CFormGroup>
                     <CFormGroup row>
                       <CCol md="3">
-                        <CLabel htmlFor="first_name">Prénom</CLabel>
+                        <CLabel htmlFor="description">Description</CLabel>
                       </CCol>
                       <CCol xs="12" md="9">
-                        <CInput id="first_name" name="first_name" placeholder="Entrer Prénom" />
-                        <CFormText className="help-block">Saisir le prénom de l'utilisateur</CFormText>
+                        <CTextarea
+                          name="description"
+                          id="description"
+                          rows="9"
+                          placeholder="Description..."
+                        />
                       </CCol>
                     </CFormGroup>
                     <CFormGroup row>
                       <CCol md="3">
-                        <CLabel htmlFor="email">Email</CLabel>
+                        <CLabel htmlFor="categorie">Categorie</CLabel>
                       </CCol>
                       <CCol xs="12" md="9">
-                        <CInput type="email" id="email" name="email" placeholder="Entrer Email" autoComplete="email" />
-                        <CFormText className="help-block">Saisir l'email de l'utilisateur</CFormText>
-                      </CCol>
-                    </CFormGroup>
-                    <CFormGroup row>
-                      <CCol md="3">
-                        <CLabel htmlFor="password">Mot de passe</CLabel>
-                      </CCol>
-                      <CCol xs="12" md="9">
-                        <CInput type="password" id="password" name="password" placeholder="Entrer Mot de passe" autoComplete="new-password" />
-                        <CFormText className="help-block">Entrer le mot de passe</CFormText>
-                      </CCol>
-                    </CFormGroup>
-                    <CFormGroup row>
-                      <CLabel col md="3" htmlFor="avatar">Photo</CLabel>
-                      <CCol xs="12" md="9">
-                        <CInputFile id="avatar" name="avatar" />
-                      </CCol>
-                    </CFormGroup>
-                    <CFormGroup row>
-                      <CLabel col md="3" htmlFor="phone">Numéro téléphone</CLabel>
-                      <CCol xs="12" md="9">
-                        <CInput id="phone" name="phone" placeholder="00 000 000" required />
-                      </CCol>
-                    </CFormGroup>
-                    <CFormGroup row>
-                      <CLabel col md="3" htmlFor="role">Rôle</CLabel>
-                      <CCol xs="12" md="9">
-                        <CSelect custom name="role" id="role">
-                          <option value="1">Administrateur</option>
-                          <option value="2">Caissier</option>
-                          <option value="3">Serveur</option>
+                        <CSelect custom name="categorie" id="categorie">
+                          <option value="1">Food</option>
+                          <option value="2">Juice</option>
+                          <option value="3">Plats</option>
+                          <option value="4">Coffee</option>
                         </CSelect>
                       </CCol>
                     </CFormGroup>
-
-                    {/* <CFormGroup row>
-                      <CCol tag="label" sm="3" className="col-form-label">
-                        Status
+                    <CFormGroup row>
+                      <CCol md="3">
+                        <CLabel htmlFor="prix">Prix</CLabel>
                       </CCol>
-                      <CCol sm="9">
-                        <CSwitch
-                          name="status"
-                          className="mr-1"
-                          color="success"
-                          defaultChecked
-                          shape="pill"
+                      <CCol xs="12" md="9">
+                        <CInput id="prix" name="prix" placeholder="Saisir le prix du produit" required />
+                      </CCol>
+                    </CFormGroup>
+                    <CFormGroup row>
+                      <CCol md="3">
+                        <CLabel htmlFor="cost">Coût</CLabel>
+                      </CCol>
+                      <CCol xs="12" md="9">
+                        <CInput id="cost" name="cost" placeholder="Saisir le coût du produit" required />
+                      </CCol>
+                    </CFormGroup>
+                    <CFormGroup row>
+                      <CCol md="3">
+                        <CLabel htmlFor="options">Options</CLabel>
+                      </CCol>
+                      <CCol xs="12" md="9">
+                        <CTextarea
+                          name="options"
+                          id="options"
+                          rows="9"
+                          placeholder="Séparer chaque option par un virgule ' , '"
                         />
                       </CCol>
-                    </CFormGroup> */}
+                    </CFormGroup>
+                    <CFormGroup row>
+                      <CCol md="3">
+                        <CLabel htmlFor="tax">Tax</CLabel>
+                      </CCol>
+                      <CCol xs="12" md="9">
+                        <CInput id="tax" name="tax" placeholder="Saisir le tax du produit" required />
+                      </CCol>
+                    </CFormGroup>
+                    <CFormGroup row>
+                      <CCol md="3">
+                        <CLabel htmlFor="unit">Unité</CLabel>
+                      </CCol>
+                      <CCol xs="12" md="9">
+                        <CInput id="unit" name="unit" placeholder="Unit du produit" />
+                      </CCol>
+                    </CFormGroup>
+                    <CFormGroup row>
+                      <CLabel col md="3" htmlFor="image">Image</CLabel>
+                      <CCol xs="12" md="9">
+                        <CInputFile id="image" name="image" />
+                      </CCol>
+                    </CFormGroup>
                   </CForm>
                 </CCardBody>
               </CCard>
@@ -162,7 +170,7 @@ const Waiters = () => {
 
       <CRow>
         <CCol col="12" sm="12" md="12" xl className="mb-3 mb-xl-10">
-          <CButton color="success" onClick={() => setSuccess(!success)} className="mr-1">Ajouter Utilisateur</CButton>
+          <CButton color="success" onClick={() => setSuccess(!success)} className="mr-1">Ajouter Produit</CButton>
         </CCol>
       </CRow>
 
@@ -219,4 +227,4 @@ const Waiters = () => {
   )
 }
 
-export default Waiters
+export default Products
